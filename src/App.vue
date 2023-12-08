@@ -1,6 +1,18 @@
-<script setup lang="ts">
-import HelloWorld from "./components/HelloWorld.vue";
-import TheWelcome from "./components/TheWelcome.vue";
+<script lang="ts">
+import Demo from "./components/Demo.vue";
+
+export default {
+  name: "App",
+  components: {
+    DemoComponent: Demo,
+  },
+  methods: {
+    onLog() {
+      // console.log("demo-ref", this.$refs.demo.onClick());
+      (this.$refs.demo as typeof Demo).onClick();
+    },
+  },
+};
 </script>
 
 <template>
@@ -14,7 +26,9 @@ import TheWelcome from "./components/TheWelcome.vue";
     />
 
     <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+      <!-- <HelloWorld msg="You did it!" /> -->
+      <demo-component ref="demo" />
+      <button @click="onLog">Logger</button>
     </div>
   </header>
 
